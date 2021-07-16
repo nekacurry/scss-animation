@@ -1,0 +1,55 @@
+
+$size: 300px;
+$red: rgba(255, 0, 0, 0.5);
+$yellow: rgba(255, 255, 0, 0.5);;
+$green: rgba(0, 255, 0, 0.5);
+$cyan:rgba(0, 255, 255, 0.5);
+$blue: rgba(0, 0, 255, 0.5);
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+.lotus {
+  width: $size;
+  height: $size;
+  // border: 1px solid;
+  position: relative;
+}
+
+.lotus > div {
+  position: absolute;
+  width: $size * 0.66;
+  height: $size * 0.66;
+  border: 1px solid;
+  border-radius: 0 70% 50% 70%;
+  left: 0px;
+  top: 70px;
+  transform: rotate(45deg);
+  transform-origin: $size * 0.5 $size * 0.5;
+  animation-duration: 6000ms;
+  animation-fill-mode: forwards;
+}
+
+$colors: $red, $yellow, $green, $cyan, $blue;
+
+@for $n from 1 through 5 {
+
+  .lotus > div:nth-child(#{$n}){
+    background-color: nth($colors, $n);
+    animation-name: bloom-#{$n};
+  }
+
+
+  @keyframes bloom-#{$n} {
+    0% {
+      transform: rotate(45deg);
+    }
+  
+    100% {
+      transform: rotate(($n - 2) * 45deg);
+    }
+  }
+  
+}
